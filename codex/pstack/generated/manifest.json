@@ -1,0 +1,648 @@
+{
+  "schemaVersion": 1,
+  "adapterVersion": "1.0.0",
+  "source": {
+    "repository": "https://github.com/cursor/plugins",
+    "commit": "6b0300214a09fd6029cfb7077043125758cd1fd2",
+    "version": "0.15.36",
+    "treeHash": "af72a8b603b8829b6c37b49971d5794484ea2c599d62802e8a81ea3db5df83e0"
+  },
+  "activation": "explicit-only",
+  "model": "inherit-parent",
+  "skills": [
+    {
+      "name": "pstack-architect",
+      "upstreamName": "architect",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "4c399a74ebf18d7a7954769f4d288978e1fb64eb479032cab120f6999fcdd362"
+    },
+    {
+      "name": "pstack-arena",
+      "upstreamName": "arena",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "3798de6c6e1ce3e71386296fbc57d7226b6918d9a4f0104b1a2275210f2ce56e"
+    },
+    {
+      "name": "pstack-automate-me",
+      "upstreamName": "automate-me",
+      "status": "conditional",
+      "requirements": [
+        "workspace-scoped Codex history (optional)",
+        "skill-creator"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "a9ac12b6ef97721ea1dc653cbeac0b558c0300fb992675cc535bd03924af7cf5"
+    },
+    {
+      "name": "pstack-benchmark-checklist",
+      "upstreamName": "benchmark-checklist",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "00af745afcc9bc68bfb149781f6ab93edd75fd0f5806de1a2de7cdc0f43533f8"
+    },
+    {
+      "name": "pstack-blast-radius",
+      "upstreamName": "blast-radius",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "84509719ee248987347d4035a5e529d123021e33e2d0f122ad0eb46203657810"
+    },
+    {
+      "name": "pstack-bro",
+      "upstreamName": "bro",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "769eae36f52f7daf16d8a642b5d6fbc88bf3efa446649f205d304778083c1e5f"
+    },
+    {
+      "name": "pstack-correct",
+      "upstreamName": "correct",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "1214570dd2f6d9133f188002c31e992c25b40497705efe729f2a8ad5ad7234ff"
+    },
+    {
+      "name": "pstack-create-formal-verification-skill",
+      "upstreamName": "create-formal-verification-skill",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "0f56caa03a6890361b181e41b16f04cea9badf419267bf58f855033f5e45ecc2"
+    },
+    {
+      "name": "pstack-create-verification-skill",
+      "upstreamName": "create-verification-skill",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "5cfe04838b445194c18af316e104ce7eefcd08e25660033f4646f004c482d781"
+    },
+    {
+      "name": "pstack-figure-it-out",
+      "upstreamName": "figure-it-out",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "dfc7b7b38b87dfc77a491e7c4a87be55531436fccc6e60f726e52fd1234f35ab"
+    },
+    {
+      "name": "pstack-how",
+      "upstreamName": "how",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "1fc6d73647cac2bd2ccc351291d5669460b007b55deba50277db91b8747d2e4e"
+    },
+    {
+      "name": "pstack-in-your-own-words",
+      "upstreamName": "in-your-own-words",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "eeb89f8c81b1d8a455cb6761837a9ec06a67a607ca8ed8188b6ba980e9389421"
+    },
+    {
+      "name": "pstack-interrogate",
+      "upstreamName": "interrogate",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "87f5769f34d6213819792dfa28e3b6478e66f499dffc8747d3ee202fcb05dcdc"
+    },
+    {
+      "name": "pstack-ketchup",
+      "upstreamName": "ketchup",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "400ec9f3fa834678b7138668cf09ec2ee98efff9ef1d244803345851c28729cc"
+    },
+    {
+      "name": "pstack-ketchup-video",
+      "upstreamName": "ketchup-video",
+      "status": "conditional",
+      "requirements": [
+        "video renderer"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "b7615d462dcd21d3b76860502e79c1fc6bdf9b83aa40e53e96746b5beac961a6"
+    },
+    {
+      "name": "pstack-maintain-formal-verification-skill",
+      "upstreamName": "maintain-formal-verification-skill",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "39c4fd905694900a824c95abe7d68b63aa8fa3a13772ae13f5180f7585fbb994"
+    },
+    {
+      "name": "pstack-maintain-verification-skill",
+      "upstreamName": "maintain-verification-skill",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "83f72dff99dcbfd96fa0c054936ad79b01d1b73019c8f2a2a0eed487cc2fdb62"
+    },
+    {
+      "name": "pstack-make-bot-ui",
+      "upstreamName": "make-bot-ui",
+      "status": "unsupported",
+      "requirements": [
+        "Cursor Automations",
+        "Cursor secret-request"
+      ],
+      "notes": "Cursor Automations와 secret-request가 필수여서 Codex에서 실행하지 않습니다.",
+      "sourceHash": "3da1df94f9e7d91c4f481a59e24f169511602b26db9086313152187e5a9cccfe"
+    },
+    {
+      "name": "pstack-no-comments",
+      "upstreamName": "no-comments",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "13b0014751ecd875493ecca09af9de8281a35dc21f0e59d764ab66b9d499ac9a"
+    },
+    {
+      "name": "pstack-poteto-help",
+      "upstreamName": "poteto-help",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "c9d2f53f74c13848bcd226a6382d99ba591401d8d4262908027d1072404877ec"
+    },
+    {
+      "name": "pstack-poteto-mode",
+      "upstreamName": "poteto-mode",
+      "status": "conditional",
+      "requirements": [
+        "subagents (optional)",
+        "forge (task-dependent)",
+        "Bun (watch-pr only)"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "b75666d06852e6283e1d21e911611a69c0e8af43b556e77dc5f9e4468ce3b659"
+    },
+    {
+      "name": "pstack-principle-attack-the-premise",
+      "upstreamName": "principle-attack-the-premise",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "5d9d5ba68eaa9b476bf05f6a32c60ad157a64bef932775ce215bade46235bdea"
+    },
+    {
+      "name": "pstack-principle-boundary-discipline",
+      "upstreamName": "principle-boundary-discipline",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "a8f6ad17527587d5018efba36b20796f438d4e59f5090e4e97eca74c50cc8f71"
+    },
+    {
+      "name": "pstack-principle-build-the-lever",
+      "upstreamName": "principle-build-the-lever",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "29bbc6f3ced31892861775d1a2443fe812248de7082fcde4ea1f9d13183b13c2"
+    },
+    {
+      "name": "pstack-principle-encode-lessons-in-structure",
+      "upstreamName": "principle-encode-lessons-in-structure",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "06e04dd2c327b3ba3e003c0a33d898fc110a290f73442ef6c9da46d040bbca69"
+    },
+    {
+      "name": "pstack-principle-exhaust-the-design-space",
+      "upstreamName": "principle-exhaust-the-design-space",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "d66040b6754d7c57aec74a3c6926323e0f8701008a35e8a80357aa2b1638818d"
+    },
+    {
+      "name": "pstack-principle-experience-first",
+      "upstreamName": "principle-experience-first",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "2abb69d7f21c53ab6e222c8eea2d2a0cc64cf804dc5241f124935c1abd5abf8b"
+    },
+    {
+      "name": "pstack-principle-explain-the-number",
+      "upstreamName": "principle-explain-the-number",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "e936cc63a578c2ac4a18488f20b23eec756cf029f11f2579896c2e117c173595"
+    },
+    {
+      "name": "pstack-principle-fix-root-causes",
+      "upstreamName": "principle-fix-root-causes",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "7b78e8df97d8cb62d65ac2761709831362ffb751ea30ed74d8fcccbd0b80bf29"
+    },
+    {
+      "name": "pstack-principle-foundational-thinking",
+      "upstreamName": "principle-foundational-thinking",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "bc6da94968dcf9092f2cabd45515013ee7f548f2a07343c174d58adfc32daafc"
+    },
+    {
+      "name": "pstack-principle-guard-the-context-window",
+      "upstreamName": "principle-guard-the-context-window",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "0a34b5bd5a14a46b6e3d22681c139c8befabad78e94b51272b462029538eeb57"
+    },
+    {
+      "name": "pstack-principle-laziness-protocol",
+      "upstreamName": "principle-laziness-protocol",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "bfed7dbf3850a15ffd335b73567fed62931df3413f95e3da6d85d171fe5703cb"
+    },
+    {
+      "name": "pstack-principle-make-operations-idempotent",
+      "upstreamName": "principle-make-operations-idempotent",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "30f85d083722c763aabd4e63ecb88ce70ca4ef6399ca6b3c388338d02f0f04e4"
+    },
+    {
+      "name": "pstack-principle-migrate-callers-then-delete-legacy-apis",
+      "upstreamName": "principle-migrate-callers-then-delete-legacy-apis",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "30c3d9f33b375ff41645aff0bc476895bc155775c67dfd5a7e035f9b195613aa"
+    },
+    {
+      "name": "pstack-principle-minimize-reader-load",
+      "upstreamName": "principle-minimize-reader-load",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "ee14d4c1e83a8220d2088312c3ee1d3e90175be71e0e22b25d381f0b3cca3fbd"
+    },
+    {
+      "name": "pstack-principle-model-the-domain",
+      "upstreamName": "principle-model-the-domain",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "59df5e9a32fd55c3f84007d9930028ab2fef4ee57ad5e0ceea15ff4e5681607b"
+    },
+    {
+      "name": "pstack-principle-never-block-on-the-human",
+      "upstreamName": "principle-never-block-on-the-human",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "d1901c41b9017650e3351c92cd6eaec9e1e9980c301dabf2bd3ff99baaa4e513"
+    },
+    {
+      "name": "pstack-principle-outcome-oriented-execution",
+      "upstreamName": "principle-outcome-oriented-execution",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "fa8ee037636f2e54b6f9353a580b1dd9c7e9c790ba14dbea78cba5842b79d6b5"
+    },
+    {
+      "name": "pstack-principle-prove-it-works",
+      "upstreamName": "principle-prove-it-works",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "a678fdcc4d056db80628fdc9667f09069d3ebdbb07a4a54c93d1fbc604eb1792"
+    },
+    {
+      "name": "pstack-principle-redesign-from-first-principles",
+      "upstreamName": "principle-redesign-from-first-principles",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "a68982e4e81f9a46d0a4710fd285f698140bb41e8184a72671e40f6b0c78fa03"
+    },
+    {
+      "name": "pstack-principle-separate-before-serializing-shared-state",
+      "upstreamName": "principle-separate-before-serializing-shared-state",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "3fe3e8c00f88176ceff477439d1e33c2548c683c77cde54d2fe23a680e7810ca"
+    },
+    {
+      "name": "pstack-principle-sequence-verifiable-units",
+      "upstreamName": "principle-sequence-verifiable-units",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "5f973e7d7530f93ebdd597e5c9d097dcf9cfa133a2d1d183638c21394c789a54"
+    },
+    {
+      "name": "pstack-principle-subtract-before-you-add",
+      "upstreamName": "principle-subtract-before-you-add",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "396bca58d4f9a6d5f4a0e71896d630142efb13109a04a62679d5839abf00ff2a"
+    },
+    {
+      "name": "pstack-principle-test-behavior-not-implementation",
+      "upstreamName": "principle-test-behavior-not-implementation",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "2675ecc73b1f183d886df757a9c12c83fa544e99ac41233934658228eb23e7e9"
+    },
+    {
+      "name": "pstack-principle-type-system-discipline",
+      "upstreamName": "principle-type-system-discipline",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "745b242fc9582b635274ed7a48d1d1a10efe080b9375de0e98702c2acdd94eb6"
+    },
+    {
+      "name": "pstack-recall",
+      "upstreamName": "recall",
+      "status": "conditional",
+      "requirements": [
+        "workspace-scoped Codex history"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "1456e88abff54bbe0eed77b6c42516747ae6b7e13cf04e68631b846d5fd8c5cb"
+    },
+    {
+      "name": "pstack-reflect",
+      "upstreamName": "reflect",
+      "status": "conditional",
+      "requirements": [
+        "workspace-scoped Codex history",
+        "subagents (optional)"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "7b02398954326d9df900dbb8026bc6bb42243324beea5561b11d5113693966b7"
+    },
+    {
+      "name": "pstack-setup-pstack",
+      "upstreamName": "setup-pstack",
+      "status": "supported",
+      "requirements": [],
+      "notes": "설치 상태와 모델 상속을 확인합니다. 원본 모델 규칙 파일은 쓰지 않습니다.",
+      "sourceHash": "8468ed47eb6b0a3c8fbb0a42d0b0b543a682be9211587c8dad6dab3c0ad65d4b"
+    },
+    {
+      "name": "pstack-sharpen",
+      "upstreamName": "sharpen",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "09c97823fce6b41457789fda0dcd71de32126f4d129841522d1a6449803c5c92"
+    },
+    {
+      "name": "pstack-show-me-your-work",
+      "upstreamName": "show-me-your-work",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "f17e4d97f5573038c36fa0aa690cced82f971044f34453e293b44a5dae5348a7"
+    },
+    {
+      "name": "pstack-statechart",
+      "upstreamName": "statechart",
+      "status": "conditional",
+      "requirements": [
+        "mise",
+        "Java/TLC",
+        "TypeScript runtime"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "64c221b68bd9159b679b5e1cc085e41d89e4c81b0ec03013351a5b45d26460dc"
+    },
+    {
+      "name": "pstack-swarm",
+      "upstreamName": "swarm",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "3fed1a9e996f77fb8caea4672511d3a82e56f99c8dcea723f850bc20aa5ac85d"
+    },
+    {
+      "name": "pstack-tdd",
+      "upstreamName": "tdd",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "60902aedd6f2bf49a46ac2e5334623dea1173b75d55b3297a7a9934c1f67b421"
+    },
+    {
+      "name": "pstack-teach",
+      "upstreamName": "teach",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "9f471a66a79df0b1237fd1a09729f64988e805bb4516d0ba4e0c12a5f3193fba"
+    },
+    {
+      "name": "pstack-technical-writing",
+      "upstreamName": "technical-writing",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "6bf0e508773484f3c5dea8c249926883f89bb005de905863e9efe44e66c9c745"
+    },
+    {
+      "name": "pstack-typescript-best-practices",
+      "upstreamName": "typescript-best-practices",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "b1a1dd742cf70ca719c5520f7d1fdff682d6333d2a332589fa377a86c845046b"
+    },
+    {
+      "name": "pstack-unslop",
+      "upstreamName": "unslop",
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "cd2169b7bf64f57943f6980a503a958346905cf371d09515331c12dab0659a5a"
+    },
+    {
+      "name": "pstack-why",
+      "upstreamName": "why",
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "772fe439763a42ac6086b0d52531d52fa199e723f82d5b4e2fe99a515a295bb8"
+    }
+  ],
+  "files": {
+    "adapter.md": "d155a55867aeb9e007a27d8115ba46e66cc1d451c3cf76bcb0be23cdb75089cc",
+    "skills/pstack-architect/SKILL.md": "1b13c74cde663bbda6766545888fa027d1ab3314bd828eb3de1a72714b79e5d2",
+    "skills/pstack-architect/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-arena/SKILL.md": "f5a985b0cff22a0b91b2a9424f09d913f32c231d18402690f5d0db05dfe6adce",
+    "skills/pstack-arena/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-automate-me/SKILL.md": "9e680224914163ed33641118d60677a329dfa7d637e01300c56f43a0a7cc799d",
+    "skills/pstack-automate-me/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-benchmark-checklist/SKILL.md": "d14154b19f1d03e34918165f42fa3538955fdeb2ed8019ffba20fe8a0922c9de",
+    "skills/pstack-benchmark-checklist/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-blast-radius/SKILL.md": "a7ef2eb9a5a430271fb3750d18873f37a04e55138201a6027b8435072609173e",
+    "skills/pstack-blast-radius/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-bro/SKILL.md": "d11c27e97c1f04799d7e86da29dd7bf4312aeda93c76d219ccd5baf1c9f52a26",
+    "skills/pstack-bro/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-correct/SKILL.md": "c5dc1382d74c87288e084d884228c56dda44ef0702aeb1c7a467530194ad4f50",
+    "skills/pstack-correct/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-create-formal-verification-skill/SKILL.md": "87852a64c8c7224c41b11b63144ae0a7b7d9783e51c24f4aaa820a788eb7becf",
+    "skills/pstack-create-formal-verification-skill/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-create-verification-skill/SKILL.md": "de4dc18669a0c3f431b1ea64b606fad1c5e26ab818c6de8e900cfd7b85b8be32",
+    "skills/pstack-create-verification-skill/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-figure-it-out/SKILL.md": "d66052782b6eff5bbc94e4f900c17b2c293072466514c4ff229ba419df9d4f3d",
+    "skills/pstack-figure-it-out/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-how/SKILL.md": "e8fc7de31a31a90164bde26ed1d8c15883f1504a3eb0408ca692c359e61dd1d8",
+    "skills/pstack-how/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-in-your-own-words/SKILL.md": "39f1ef2ece3a6c4e3bda08f1baa74973eb5b504bb11198e37e13c6a6792cecc6",
+    "skills/pstack-in-your-own-words/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-interrogate/SKILL.md": "da0d26fb73cac7c4dc4d2426ec2c5c59c43849391a9d5ef1c9f39072f40d4c4a",
+    "skills/pstack-interrogate/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-ketchup/SKILL.md": "cdf53f102a98e99229e7e742edd764bddc061f84d4e4cc641bc693159a85717d",
+    "skills/pstack-ketchup/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-ketchup-video/SKILL.md": "129602dd001500d24e152ba01060bee7b760c14abb272de02f5c2444a690860e",
+    "skills/pstack-ketchup-video/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-maintain-formal-verification-skill/SKILL.md": "fc6046b29531ebb70f1004e9ecdf35e0802b3d99a50f86f61681c6d8b7109fb8",
+    "skills/pstack-maintain-formal-verification-skill/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-maintain-verification-skill/SKILL.md": "b02125147e68959bb89640993263e7ae872adb31dfcb9325a34eda3b6e637155",
+    "skills/pstack-maintain-verification-skill/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-make-bot-ui/SKILL.md": "f81fe55203894c8256e6c2f5fcaaea807f230fba3a40e17de9d25410385ae843",
+    "skills/pstack-make-bot-ui/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-no-comments/SKILL.md": "c187ba9cf2781bcbd1dbd458f7d22ae06f6aafd02785b991843fa95e5cfc9e88",
+    "skills/pstack-no-comments/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-poteto-help/SKILL.md": "c27da17b0b6a4631c057c411449015a4ce4996dd5336f70c6355c1e39c5f17d8",
+    "skills/pstack-poteto-help/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-poteto-mode/SKILL.md": "63eeb63752a02ee7d1da593e3646fa0ef66e2c8b66bc18cce6256cd4fe3b6123",
+    "skills/pstack-poteto-mode/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-attack-the-premise/SKILL.md": "b6f3dcc35b74b94294de1eac15024d6a356f8c8da9af0fc3823b6b57ba78b2ab",
+    "skills/pstack-principle-attack-the-premise/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-boundary-discipline/SKILL.md": "7c654b9b1d89d7fbd51206ca322420d4b44f72d78a8a4b5637eeaa7e88c24089",
+    "skills/pstack-principle-boundary-discipline/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-build-the-lever/SKILL.md": "28d3953a8e3445447ffbfd8f49c2f11d696df577994c84bc3388ebdbae9ee93e",
+    "skills/pstack-principle-build-the-lever/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-encode-lessons-in-structure/SKILL.md": "e38232ff889182f0890b72a29ac7ce3e26bb7df5b2855897aff3defc4d2c998b",
+    "skills/pstack-principle-encode-lessons-in-structure/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-exhaust-the-design-space/SKILL.md": "33ed6a7d61d0be98d73c0a0bed90c672e67dfaf3c0962a2ab95f4187fe4c880f",
+    "skills/pstack-principle-exhaust-the-design-space/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-experience-first/SKILL.md": "335482c4f2ace9f03091bfecdb1f8d22501825fc836aafac39135f83e2f4be20",
+    "skills/pstack-principle-experience-first/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-explain-the-number/SKILL.md": "ea3993421b472c3aa10768317d9d0dd8d44ad6c88059e0d23b932ec3d03360a0",
+    "skills/pstack-principle-explain-the-number/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-fix-root-causes/SKILL.md": "e4072bb16f90a1b453bcceb2dad9d06355ead8f91a1fb1bddcfd9708f254de88",
+    "skills/pstack-principle-fix-root-causes/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-foundational-thinking/SKILL.md": "bca43abbb27b781d0a8afb62c5bf27ad9e63bf48c38667e9638801673157935e",
+    "skills/pstack-principle-foundational-thinking/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-guard-the-context-window/SKILL.md": "134852adeb3fd811ca4d01e601729c08dea6fe0ec28687765ad9e38c6f5870d2",
+    "skills/pstack-principle-guard-the-context-window/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-laziness-protocol/SKILL.md": "cf66582e103521f591ec103ef990b15ac7b922a626ec3418d11f374dde043a92",
+    "skills/pstack-principle-laziness-protocol/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-make-operations-idempotent/SKILL.md": "820730b94e44d1d8f2eef144eecdba61bbbb637aeccc27a9620e8d50819fb296",
+    "skills/pstack-principle-make-operations-idempotent/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-migrate-callers-then-delete-legacy-apis/SKILL.md": "d2bd4e6a42a2aa5fd296f5dd4ed908cdab0b98dd78edcfa1aa386fa635671ad4",
+    "skills/pstack-principle-migrate-callers-then-delete-legacy-apis/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-minimize-reader-load/SKILL.md": "29a1501e8daebe8988cea6c16c3e95fbcb22e4e92bf072aaca5e82df8e5bc424",
+    "skills/pstack-principle-minimize-reader-load/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-model-the-domain/SKILL.md": "a6aa7df6c19c31e77c377d0be61dfcc72b661028c84d82b5cdbf5db97dae27b0",
+    "skills/pstack-principle-model-the-domain/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-never-block-on-the-human/SKILL.md": "6c4c9682fdf1fba0fbc3d34a214187e3e67acf8641a625f12359a4c0a1ccbf96",
+    "skills/pstack-principle-never-block-on-the-human/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-outcome-oriented-execution/SKILL.md": "a5a70718c478ff2a6d20d5bff1c24ded691fb592726e9008b69d71b2370d6afb",
+    "skills/pstack-principle-outcome-oriented-execution/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-prove-it-works/SKILL.md": "d425983ef15e7bdfbe6b8e470bfec56f63baad63a4adc8facbeecca0d3ae27ee",
+    "skills/pstack-principle-prove-it-works/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-redesign-from-first-principles/SKILL.md": "28490d495435942c4828978746569b129cc414641f99bb7619614dc983ab2b4f",
+    "skills/pstack-principle-redesign-from-first-principles/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-separate-before-serializing-shared-state/SKILL.md": "98ca9e2d3879754f8174da91d5729b4f6b2243a1816c71a7673bf903aeaf06cb",
+    "skills/pstack-principle-separate-before-serializing-shared-state/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-sequence-verifiable-units/SKILL.md": "584fc5c36fe95e539dcd4ce5ac081cd438840eb2c1e6a331229059113cfe1e90",
+    "skills/pstack-principle-sequence-verifiable-units/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-subtract-before-you-add/SKILL.md": "94ddf439d3d16869e83bac22d3e832e096d39da03380dde1c33aa3aadf40c6c2",
+    "skills/pstack-principle-subtract-before-you-add/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-test-behavior-not-implementation/SKILL.md": "559748defa8ec74199134676be56e48d31d340364a46b9caaff47fc3d00eb402",
+    "skills/pstack-principle-test-behavior-not-implementation/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-principle-type-system-discipline/SKILL.md": "2ded20bd3d74add986adb2380fc6041ad9332d23c4feec408dd97586feaf7679",
+    "skills/pstack-principle-type-system-discipline/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-recall/SKILL.md": "0ab9bedbfcebbcd3ff29bed61f74218a6f1eb9df53998a4319c8f9c0216d7c1a",
+    "skills/pstack-recall/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-reflect/SKILL.md": "bd2b9f27d18ffe818dede05c4a343b312a2c79245a30850166a3411317a86f44",
+    "skills/pstack-reflect/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-setup-pstack/SKILL.md": "2bc6773e925d0ca25f25f1b421786dc7d3f3f2e4246042e5385afcc0ec60ccb3",
+    "skills/pstack-setup-pstack/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-sharpen/SKILL.md": "065b853aab992a331edf179e3e65de39e7c4f3fc41f90e7c6799c05aef6c0a7a",
+    "skills/pstack-sharpen/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-show-me-your-work/SKILL.md": "6a71707d8095b0b5aec26f04b839efe740c81a80986e14c6d3d0d0b6055d3034",
+    "skills/pstack-show-me-your-work/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-statechart/SKILL.md": "aa61e6b4ba5ce950a64a64611b638c7dc01cba2d705195613a73a01274b16e5a",
+    "skills/pstack-statechart/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-swarm/SKILL.md": "fff0126f40147a7a8bc3af8feb7945f4c37a8bb8ad22782bd04103d044c72f54",
+    "skills/pstack-swarm/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-tdd/SKILL.md": "b62167a520a4c34185528f3d6ddc28e778766d082054d69ce5816443df44e39b",
+    "skills/pstack-tdd/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-teach/SKILL.md": "076ecbc231c9e5be90ce5bdff219a85b9e30b9a5260838e69e83f7da1d9aaa61",
+    "skills/pstack-teach/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-technical-writing/SKILL.md": "86417b9a0bb7a9dba5dfe3cc298402c6910267758db2a7c0499d6d028af37ec3",
+    "skills/pstack-technical-writing/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-typescript-best-practices/SKILL.md": "1daddd3f49786f1c1c926d9cca8b91af9d6d2a77b32a91442be575bb34f12b21",
+    "skills/pstack-typescript-best-practices/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-unslop/SKILL.md": "d560e51f52afe2aaa38948010cdd513f8d78068ab05348fa12f39c583ba1b45d",
+    "skills/pstack-unslop/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94",
+    "skills/pstack-why/SKILL.md": "03bc15a5fe0cbae2990ac8022770b98332dd986d160fdea9fb4f9ba6f03c8b0c",
+    "skills/pstack-why/agents/openai.yaml": "a1499d95abd8447558c535fe5554adcc3c9b988a0a39264a6283d430effe1e94"
+  }
+}

@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 1,
+  "sharedHash": "a2d83453b42d45c1802c03ec44f4085bbbbcc85f1e94e51b4b58643cc37d9d36",
+  "skills": {
+    "architect": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "4c399a74ebf18d7a7954769f4d288978e1fb64eb479032cab120f6999fcdd362"
+    },
+    "arena": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "3798de6c6e1ce3e71386296fbc57d7226b6918d9a4f0104b1a2275210f2ce56e"
+    },
+    "automate-me": {
+      "status": "conditional",
+      "requirements": [
+        "workspace-scoped Codex history (optional)",
+        "skill-creator"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "a9ac12b6ef97721ea1dc653cbeac0b558c0300fb992675cc535bd03924af7cf5"
+    },
+    "benchmark-checklist": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "00af745afcc9bc68bfb149781f6ab93edd75fd0f5806de1a2de7cdc0f43533f8"
+    },
+    "blast-radius": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "84509719ee248987347d4035a5e529d123021e33e2d0f122ad0eb46203657810"
+    },
+    "bro": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "769eae36f52f7daf16d8a642b5d6fbc88bf3efa446649f205d304778083c1e5f"
+    },
+    "correct": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "1214570dd2f6d9133f188002c31e992c25b40497705efe729f2a8ad5ad7234ff"
+    },
+    "create-formal-verification-skill": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "0f56caa03a6890361b181e41b16f04cea9badf419267bf58f855033f5e45ecc2"
+    },
+    "create-verification-skill": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "5cfe04838b445194c18af316e104ce7eefcd08e25660033f4646f004c482d781"
+    },
+    "figure-it-out": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "dfc7b7b38b87dfc77a491e7c4a87be55531436fccc6e60f726e52fd1234f35ab"
+    },
+    "how": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "1fc6d73647cac2bd2ccc351291d5669460b007b55deba50277db91b8747d2e4e"
+    },
+    "in-your-own-words": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "eeb89f8c81b1d8a455cb6761837a9ec06a67a607ca8ed8188b6ba980e9389421"
+    },
+    "interrogate": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "87f5769f34d6213819792dfa28e3b6478e66f499dffc8747d3ee202fcb05dcdc"
+    },
+    "ketchup": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "400ec9f3fa834678b7138668cf09ec2ee98efff9ef1d244803345851c28729cc"
+    },
+    "ketchup-video": {
+      "status": "conditional",
+      "requirements": [
+        "video renderer"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "b7615d462dcd21d3b76860502e79c1fc6bdf9b83aa40e53e96746b5beac961a6"
+    },
+    "maintain-formal-verification-skill": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "39c4fd905694900a824c95abe7d68b63aa8fa3a13772ae13f5180f7585fbb994"
+    },
+    "maintain-verification-skill": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "83f72dff99dcbfd96fa0c054936ad79b01d1b73019c8f2a2a0eed487cc2fdb62"
+    },
+    "make-bot-ui": {
+      "status": "unsupported",
+      "requirements": [
+        "Cursor Automations",
+        "Cursor secret-request"
+      ],
+      "notes": "Cursor Automations와 secret-request가 필수여서 Codex에서 실행하지 않습니다.",
+      "sourceHash": "3da1df94f9e7d91c4f481a59e24f169511602b26db9086313152187e5a9cccfe"
+    },
+    "no-comments": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "13b0014751ecd875493ecca09af9de8281a35dc21f0e59d764ab66b9d499ac9a"
+    },
+    "poteto-help": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "c9d2f53f74c13848bcd226a6382d99ba591401d8d4262908027d1072404877ec"
+    },
+    "poteto-mode": {
+      "status": "conditional",
+      "requirements": [
+        "subagents (optional)",
+        "forge (task-dependent)",
+        "Bun (watch-pr only)"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "b75666d06852e6283e1d21e911611a69c0e8af43b556e77dc5f9e4468ce3b659"
+    },
+    "principle-attack-the-premise": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "5d9d5ba68eaa9b476bf05f6a32c60ad157a64bef932775ce215bade46235bdea"
+    },
+    "principle-boundary-discipline": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "a8f6ad17527587d5018efba36b20796f438d4e59f5090e4e97eca74c50cc8f71"
+    },
+    "principle-build-the-lever": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "29bbc6f3ced31892861775d1a2443fe812248de7082fcde4ea1f9d13183b13c2"
+    },
+    "principle-encode-lessons-in-structure": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "06e04dd2c327b3ba3e003c0a33d898fc110a290f73442ef6c9da46d040bbca69"
+    },
+    "principle-exhaust-the-design-space": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "d66040b6754d7c57aec74a3c6926323e0f8701008a35e8a80357aa2b1638818d"
+    },
+    "principle-experience-first": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "2abb69d7f21c53ab6e222c8eea2d2a0cc64cf804dc5241f124935c1abd5abf8b"
+    },
+    "principle-explain-the-number": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "e936cc63a578c2ac4a18488f20b23eec756cf029f11f2579896c2e117c173595"
+    },
+    "principle-fix-root-causes": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "7b78e8df97d8cb62d65ac2761709831362ffb751ea30ed74d8fcccbd0b80bf29"
+    },
+    "principle-foundational-thinking": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "bc6da94968dcf9092f2cabd45515013ee7f548f2a07343c174d58adfc32daafc"
+    },
+    "principle-guard-the-context-window": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "0a34b5bd5a14a46b6e3d22681c139c8befabad78e94b51272b462029538eeb57"
+    },
+    "principle-laziness-protocol": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "bfed7dbf3850a15ffd335b73567fed62931df3413f95e3da6d85d171fe5703cb"
+    },
+    "principle-make-operations-idempotent": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "30f85d083722c763aabd4e63ecb88ce70ca4ef6399ca6b3c388338d02f0f04e4"
+    },
+    "principle-migrate-callers-then-delete-legacy-apis": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "30c3d9f33b375ff41645aff0bc476895bc155775c67dfd5a7e035f9b195613aa"
+    },
+    "principle-minimize-reader-load": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "ee14d4c1e83a8220d2088312c3ee1d3e90175be71e0e22b25d381f0b3cca3fbd"
+    },
+    "principle-model-the-domain": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "59df5e9a32fd55c3f84007d9930028ab2fef4ee57ad5e0ceea15ff4e5681607b"
+    },
+    "principle-never-block-on-the-human": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "d1901c41b9017650e3351c92cd6eaec9e1e9980c301dabf2bd3ff99baaa4e513"
+    },
+    "principle-outcome-oriented-execution": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "fa8ee037636f2e54b6f9353a580b1dd9c7e9c790ba14dbea78cba5842b79d6b5"
+    },
+    "principle-prove-it-works": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "a678fdcc4d056db80628fdc9667f09069d3ebdbb07a4a54c93d1fbc604eb1792"
+    },
+    "principle-redesign-from-first-principles": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "a68982e4e81f9a46d0a4710fd285f698140bb41e8184a72671e40f6b0c78fa03"
+    },
+    "principle-separate-before-serializing-shared-state": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "3fe3e8c00f88176ceff477439d1e33c2548c683c77cde54d2fe23a680e7810ca"
+    },
+    "principle-sequence-verifiable-units": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "5f973e7d7530f93ebdd597e5c9d097dcf9cfa133a2d1d183638c21394c789a54"
+    },
+    "principle-subtract-before-you-add": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "396bca58d4f9a6d5f4a0e71896d630142efb13109a04a62679d5839abf00ff2a"
+    },
+    "principle-test-behavior-not-implementation": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "2675ecc73b1f183d886df757a9c12c83fa544e99ac41233934658228eb23e7e9"
+    },
+    "principle-type-system-discipline": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "745b242fc9582b635274ed7a48d1d1a10efe080b9375de0e98702c2acdd94eb6"
+    },
+    "recall": {
+      "status": "conditional",
+      "requirements": [
+        "workspace-scoped Codex history"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "1456e88abff54bbe0eed77b6c42516747ae6b7e13cf04e68631b846d5fd8c5cb"
+    },
+    "reflect": {
+      "status": "conditional",
+      "requirements": [
+        "workspace-scoped Codex history",
+        "subagents (optional)"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "7b02398954326d9df900dbb8026bc6bb42243324beea5561b11d5113693966b7"
+    },
+    "setup-pstack": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "설치 상태와 모델 상속을 확인합니다. 원본 모델 규칙 파일은 쓰지 않습니다.",
+      "sourceHash": "8468ed47eb6b0a3c8fbb0a42d0b0b543a682be9211587c8dad6dab3c0ad65d4b"
+    },
+    "sharpen": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "09c97823fce6b41457789fda0dcd71de32126f4d129841522d1a6449803c5c92"
+    },
+    "show-me-your-work": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "f17e4d97f5573038c36fa0aa690cced82f971044f34453e293b44a5dae5348a7"
+    },
+    "statechart": {
+      "status": "conditional",
+      "requirements": [
+        "mise",
+        "Java/TLC",
+        "TypeScript runtime"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "64c221b68bd9159b679b5e1cc085e41d89e4c81b0ec03013351a5b45d26460dc"
+    },
+    "swarm": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "3fed1a9e996f77fb8caea4672511d3a82e56f99c8dcea723f850bc20aa5ac85d"
+    },
+    "tdd": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "60902aedd6f2bf49a46ac2e5334623dea1173b75d55b3297a7a9934c1f67b421"
+    },
+    "teach": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "9f471a66a79df0b1237fd1a09729f64988e805bb4516d0ba4e0c12a5f3193fba"
+    },
+    "technical-writing": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "6bf0e508773484f3c5dea8c249926883f89bb005de905863e9efe44e66c9c745"
+    },
+    "typescript-best-practices": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "b1a1dd742cf70ca719c5520f7d1fdff682d6333d2a332589fa377a86c845046b"
+    },
+    "unslop": {
+      "status": "supported",
+      "requirements": [],
+      "notes": "Codex 어댑터에 따라 원본 절차를 수행합니다.",
+      "sourceHash": "cd2169b7bf64f57943f6980a503a958346905cf371d09515331c12dab0659a5a"
+    },
+    "why": {
+      "status": "conditional",
+      "requirements": [
+        "task-specific tools; see adapter"
+      ],
+      "notes": "필요한 도구가 실제 제공되는지 확인합니다. 생략·순차 대체·교차 검증 미실행을 구분해 보고합니다.",
+      "sourceHash": "772fe439763a42ac6086b0d52531d52fa199e723f82d5b4e2fe99a515a295bb8"
+    }
+  }
+}

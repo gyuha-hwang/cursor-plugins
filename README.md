@@ -1,5 +1,7 @@
 # Cursor plugins
 
+이 포크의 **pstack Codex 호환판**은 [설치·사용·업데이트 안내](codex/pstack/README.md)에서 확인할 수 있다. 아래 목록과 원본 Cursor·Claude Code 구성은 유지한다.
+
 Official Cursor plugins for popular developer tools, frameworks, and SaaS products. Each plugin is a standalone directory at the repository root with its own `.cursor-plugin/plugin.json` manifest.
 
 ## Plugins

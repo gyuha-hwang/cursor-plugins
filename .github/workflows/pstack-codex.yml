@@ -1,0 +1,24 @@
+name: pstack Codex
+on:
+  push:
+    branches: [main]
+    paths: ['codex/pstack/**', 'pstack/**', 'scripts/**', '.github/workflows/pstack-codex.yml']
+  pull_request:
+    paths: ['codex/pstack/**', 'pstack/**', 'scripts/**', '.github/workflows/pstack-codex.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --prefix codex/pstack --ignore-scripts --no-audit --no-fund
+      - run: npm install --no-save --no-package-lock --ignore-scripts --no-audit --no-fund ajv@8.17.1 ajv-formats@3.0.1 fast-check@4.5.3
+      - run: node codex/pstack/scripts/check.mjs
+      - run: git diff --exit-code

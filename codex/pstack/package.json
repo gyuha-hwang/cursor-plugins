@@ -1,0 +1,14 @@
+{
+  "name": "@gyuha-hwang/pstack-codex",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "generate": "node scripts/generate.mjs",
+    "check": "node scripts/generate.mjs --check",
+    "test": "node --test test/*.test.mjs",
+    "upstream:check": "node scripts/sync-upstream.mjs --dry-run"
+  },
+  "dependencies": { "yaml": "2.8.2" }
+}
