@@ -15,6 +15,8 @@ const cleanEnv = () => Object.fromEntries(Object.entries(process.env).filter(([k
 export function sync(repo = root, { apply = false, repository = process.env.GITHUB_REPOSITORY || 'gyuha-hwang/cursor-plugins', github, upstream = 'https://github.com/cursor/plugins.git' } = {}) {
   if (repository !== 'gyuha-hwang/cursor-plugins') throw new Error('Updater only writes to gyuha-hwang/cursor-plugins');
   const gh = github || ((...args) => execFileSync('gh', args, { cwd: repo, encoding: 'utf8', maxBuffer: 4 * 1024 * 1024 }).trim());
+  const settings = JSON.parse(gh('api', `repos/${repository}`, '--jq', '{has_issues}'));
+  if (settings.has_issues !== true) throw new Error(`GitHub Issues must be enabled for conflict reporting: gh repo edit ${repository} --enable-issues`);
   const lock = json(join(repo, 'codex/pstack/upstream-lock.json'));
   const candidate = gh('api', 'repos/cursor/plugins/commits/main', '--jq', '.sha');
   const pending = JSON.parse(gh('pr', 'list', '--repo', repository, '--state', 'open', '--label', 'pstack-upstream', '--json', 'number,url,headRefName'))[0];

@@ -36,7 +36,9 @@ node codex/pstack/scripts/manage.mjs rollback
 node codex/pstack/scripts/manage.mjs uninstall
 ```
 
-갱신은 무결성을 확인한 버전으로 current 링크를 교체한다. 실패하면 현재 설치본을 유지한다. rollback은 직전 설치본과 현재 설치본을 교환한다. 같은 버전의 재설치는 직전 버전 기록을 지우지 않는다. 제거는 이 도구가 관리하는 링크만 해제하며 소스와 버전별 자료는 보존한다. 남아 있는 `.install-lock`은 다른 설치 프로세스가 종료됐는지 확인한 후 빈 디렉터리만 `rmdir`로 제거한다.
+갱신은 무결성을 확인한 버전으로 current 링크를 교체한다. 추가·삭제되는 스킬 링크까지 같은 트랜잭션에서 처리하며, 실패하면 기존 current·previous와 스킬 링크를 복원한다. 파일시스템 문제로 복원 자체도 실패하면 `rollback was incomplete`와 실패 원인을 보고한다. rollback은 정상인 직전 설치본만 활성화한다. 현재 설치본이 정상일 때는 직전 설치본과 교환하고, 손상됐을 때는 기존의 정상 복구 대상을 유지한다. 같은 버전의 재설치는 직전 버전 기록을 지우지 않는다.
+
+`status`의 `healthy: false`와 `integrityError`는 현재 설치본이 손상됐다는 뜻이다. 이 경우에도 정상 이전 버전으로 rollback하거나 다른 검증된 커밋으로 update할 수 있다. 손상된 previous는 새 버전 설치나 제거를 막지 않지만 rollback 대상으로 선택할 수 없다. 손상된 동일 커밋 디렉터리를 자동으로 덮어쓰지는 않는다. 제거는 내용 검증과 별개로 소유한 링크만 해제하며 소스와 버전별 자료는 보존한다. 관리 경로 밖으로 연결된 포인터는 복구·제거에서도 거부한다. 남아 있는 `.install-lock`은 다른 설치 프로세스가 종료됐는지 확인한 후 빈 디렉터리만 `rmdir`로 제거한다.
 
 ## 원본 업데이트를 검토하기
 
@@ -56,7 +58,7 @@ npm test --prefix codex/pstack
 
 수동 변경 확인은 `npm run upstream:check --prefix codex/pstack`, PR 생성까지는 `node codex/pstack/scripts/sync-upstream.mjs --apply`다. 확인 모드는 GitHub 읽기만 하며, 적용 모드는 깨끗한 체크아웃과 이 포크의 origin을 요구한다. 동일한 원본 SHA의 브랜치가 남은 경우 임의로 덮어쓰지 않고 실패하므로 기존 브랜치/PR을 먼저 확인한다.
 
-포크에서 Actions와 PR 생성 권한을 활성화해야 한다. 정기 워크플로는 기본 GITHUB_TOKEN만 사용한다. 동기화 작업 안에서 검증을 직접 실행하므로, 자동 생성 PR의 별도 CI가 실행 승인을 기다려도 검증 결과를 확인할 수 있다. 공개 저장소가 60일간 비활성이면 GitHub가 예약 실행을 중지할 수 있다. Actions에서 다시 활성화하고 수동 실행한다. [GitHub 예약 실행 정책](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
+포크에서 Actions와 PR 생성 권한, 충돌 신고를 위한 Issues를 활성화해야 한다. Issues 설정은 `gh repo edit gyuha-hwang/cursor-plugins --enable-issues`로 활성화할 수 있다. 확인·적용 모드 모두 시작할 때 `has_issues`를 확인하며, 비활성 상태라면 Git 변경 전에 설정 명령을 안내하고 실패한다. 워크플로가 저장소 설정을 자동 변경하지는 않는다. 정기 워크플로는 기본 GITHUB_TOKEN만 사용한다. 동기화 작업 안에서 검증을 직접 실행하므로, 자동 생성 PR의 별도 CI가 실행 승인을 기다려도 검증 결과를 확인할 수 있다. 공개 저장소가 60일간 비활성이면 GitHub가 예약 실행을 중지할 수 있다. Actions에서 다시 활성화하고 수동 실행한다. [GitHub 예약 실행 정책](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
 
 ## 검증과 유지보수
 
@@ -82,3 +84,7 @@ pstack 0.15.36 / 어댑터 1.0.0을 Node 24와 Codex CLI 0.167.0에서 확인했
 - 실제 Codex 읽기 전용 실행: 도움말·설정 확인·미지원 기능 안내·코드 설명·제공된 요약에서 맥락 회수. swarm은 정확히 두 작업자가 각자 Node를 실행해 결과를 반환하고 상위가 취합하는 것을 확인했다. 모델·추론 강도 인자는 생략했다.
 - `--ephemeral` CLI 검증에서는 작업자 생성이 `no rollout found`로 실패했고 순차 확인과 독립 검증 미실행을 보고했다. 일반 CLI 세션과 별도 독립 검증 세션에서는 두 작업자 실행이 성공했다. 따라서 위임이 필요한 작업에는 정상 세션을 사용한다.
 - 다중 모델 교차 검증, 전체 58개 스킬의 종단 실행, 실제 브라우저·운영·외부 서비스 통합, 실제 TLC 모델 검증은 이 초기 확인에 포함하지 않았다.
+
+### 1.0.1 복구·충돌 신고 수정
+
+설치 포인터의 소유 경로 확인과 설치본 내용 검증을 분리했다. 활성화할 대상만 내용 검증을 통과해야 하며, 손상된 현재·이전 버전 때문에 복구·갱신·제거가 막히지 않도록 했다. 삭제 링크 오류와 current 전환 오류에서는 기존 포인터·링크를 복원한다. 포크의 Issues를 활성화하고, 다시 비활성화됐을 때 동기화가 사전 검사에서 중단되도록 했다. 손상된 버전의 복구, 부분 링크 삭제 실패, 마지막 포인터 전환 실패, 관리 경로 밖 포인터 보호, Issues 비활성 감지 회귀 검사를 포함해 호환판 테스트 30개가 통과했다. 실제 쓰기 권한을 제거한 디렉터리에서도 링크 삭제 실패 시 기존 설치본과 링크가 유지되는 것을 확인했다. 기존 원본 검사 결과는 267개 통과·선택 검사 67개 생략이며, 이 수정에서 모델·UI·외부 서비스 동작은 다시 실행하지 않았다.

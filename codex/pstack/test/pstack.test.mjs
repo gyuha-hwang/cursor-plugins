@@ -1,8 +1,10 @@
 import { test } from 'node:test';
+import fs from 'node:fs';
+import { syncBuiltinESMExports } from 'node:module';
 import assert from 'node:assert/strict';
-import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, readlinkSync, realpathSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { dirname, join, resolve } from 'node:path';
+import { basename, dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parse } from 'yaml';
 import { generate, render } from '../scripts/generate.mjs';
@@ -35,8 +37,30 @@ function fixture(t) {
   const first = commit();
   const home = join(temp, 'pstack'); const skillsDir = join(temp, 'user-skills');
   const options = { source: repo, home, skillsDir, ref: first };
-  const advance = () => { write('codex/pstack/package.json', JSON.stringify({ version: '1.0.1' })); generate(repo); return commit(); };
+  const advance = (version = '1.0.1') => { write('codex/pstack/package.json', JSON.stringify({ version })); generate(repo); return commit(); };
   return { temp, repo, home, skillsDir, write, commit, upstream, first, options, advance };
+}
+
+function releaseWithSkills(f, names) {
+  const original = json(join(f.repo, 'codex/pstack/compatibility.json'));
+  for (const name of Object.keys(original.skills)) if (!names.includes(name)) rmSync(join(f.repo, 'pstack/skills', name), { recursive: true });
+  for (const name of names) if (!original.skills[name]) f.write(`pstack/skills/${name}/SKILL.md`, `---\nname: ${name}\ndescription: Fixture\n---\n# Fixture\n`);
+  original.skills = Object.fromEntries(names.map(name => [name, { status: 'supported', requirements: [], notes: 'Fixture', sourceHash: treeHash(join(f.repo, 'pstack/skills', name)) }]));
+  f.write('codex/pstack/compatibility.json', JSON.stringify(original));
+  const lock = json(join(f.repo, 'codex/pstack/upstream-lock.json'));
+  f.write('codex/pstack/upstream-lock.json', JSON.stringify({ ...lock, treeHash: treeHash(join(f.repo, 'pstack')) }));
+  return f.advance();
+}
+
+function withUnlinkFailure(path, operation) {
+  path = join(realpathSync(dirname(path)), basename(path));
+  const original = fs.unlinkSync;
+  fs.unlinkSync = candidate => {
+    if (candidate === path) throw Object.assign(new Error('permission denied'), { code: 'EACCES' });
+    return original(candidate);
+  };
+  syncBuiltinESMExports();
+  try { operation(); } finally { fs.unlinkSync = original; syncBuiltinESMExports(); }
 }
 
 test('generated entrypoints expose namespaced skills with explicit-only YAML and working original links', t => {
@@ -101,6 +125,83 @@ test('update and rollback switch all links to the selected version', t => {
   assert.equal(readlinkSync(join(f.home, 'current')), firstPointer);
   assert.equal(manage('rollback', f.options).commit, next);
 });
+test('rollback restores a healthy previous release even when current bytes are corrupt', t => {
+  const f = fixture(t); manage('install', f.options); const next = f.advance();
+  const current = manage('update', { ...f.options, ref: next });
+  writeFileSync(join(current.release, 'pstack/skills/alpha/SKILL.md'), 'corrupt');
+  const restored = manage('rollback', f.options);
+  assert.equal(restored.commit, f.first); assert.deepEqual(restored.brokenLinks, []);
+  assert.equal(readFileSync(join(current.release, 'pstack/skills/alpha/SKILL.md'), 'utf8'), 'corrupt');
+});
+test('a healthy update preserves the last good rollback release when current is corrupt', t => {
+  const f = fixture(t); manage('install', f.options); const second = f.advance();
+  const current = manage('update', { ...f.options, ref: second });
+  writeFileSync(join(current.release, 'pstack/skills/alpha/SKILL.md'), 'corrupt');
+  assert.equal(manage('status', f.options).healthy, false);
+  const third = f.advance('1.0.2');
+  assert.equal(manage('update', { ...f.options, ref: third }).commit, third);
+  assert.equal(manage('rollback', f.options).commit, f.first);
+});
+test('corrupt previous content does not block update or uninstall', t => {
+  const f = fixture(t); const first = manage('install', f.options); const second = f.advance();
+  manage('update', { ...f.options, ref: second });
+  writeFileSync(join(first.release, 'pstack/skills/alpha/SKILL.md'), 'corrupt');
+  assert.throws(() => manage('rollback', f.options), /integrity check failed/);
+  assert.equal(manage('status', f.options).commit, second);
+  const third = f.advance('1.0.2');
+  assert.equal(manage('update', { ...f.options, ref: third }).commit, third);
+  assert.equal(manage('uninstall', f.options).installed, false);
+});
+test('uninstall can detach a corrupt current release without deleting preserved data', t => {
+  const f = fixture(t); const current = manage('install', f.options);
+  writeFileSync(join(current.release, 'pstack/skills/alpha/SKILL.md'), 'corrupt');
+  assert.equal(manage('uninstall', f.options).installed, false);
+  assert.equal(existsSync(join(f.skillsDir, 'pstack-alpha')), false);
+  assert.equal(readFileSync(join(current.release, 'pstack/skills/alpha/SKILL.md'), 'utf8'), 'corrupt');
+});
+test('uninstall refuses pointers outside the owned release directory', t => {
+  const f = fixture(t); manage('install', f.options);
+  rmSync(join(f.home, 'current')); symlinkSync(f.repo, join(f.home, 'current'));
+  assert.throws(() => manage('uninstall', f.options), /outside managed releases/);
+  assert.equal(readlinkSync(join(f.home, 'current')), f.repo);
+});
+test('failure removing a retired skill keeps the old release and all links', t => {
+  const f = fixture(t); manage('install', f.options);
+  const next = releaseWithSkills(f, ['alpha']);
+  const before = readlinkSync(join(f.home, 'current'));
+  const retired = join(f.skillsDir, 'pstack-beta');
+  withUnlinkFailure(retired, () => assert.throws(() => manage('update', { ...f.options, ref: next }), { code: 'EACCES' }));
+  assert.equal(readlinkSync(join(f.home, 'current')), before);
+  assert.equal(existsSync(join(f.home, 'previous')), false);
+  assert.ok(existsSync(retired)); assert.deepEqual(manage('status', f.options).brokenLinks, []);
+});
+test('a partial retired-link failure restores earlier removals and removes new links', t => {
+  const f = fixture(t); manage('install', f.options);
+  const next = releaseWithSkills(f, ['gamma']);
+  withUnlinkFailure(join(f.skillsDir, 'pstack-beta'), () => assert.throws(() => manage('update', { ...f.options, ref: next }), { code: 'EACCES' }));
+  assert.equal(manage('status', f.options).commit, f.first);
+  assert.deepEqual(manage('status', f.options).brokenLinks, []);
+  assert.equal(existsSync(join(f.skillsDir, 'pstack-gamma')), false);
+});
+test('failure switching current restores previous and the complete skill link set', t => {
+  const f = fixture(t); manage('install', f.options); const second = f.advance();
+  manage('update', { ...f.options, ref: second });
+  const beforeCurrent = readlinkSync(join(f.home, 'current'));
+  const beforePrevious = readlinkSync(join(f.home, 'previous'));
+  const next = releaseWithSkills(f, ['gamma']);
+  const original = fs.renameSync; const current = join(realpathSync(f.home), 'current');
+  fs.renameSync = (from, to) => {
+    if (to === current) throw Object.assign(new Error('permission denied'), { code: 'EACCES' });
+    return original(from, to);
+  };
+  syncBuiltinESMExports();
+  try { assert.throws(() => manage('update', { ...f.options, ref: next }), { code: 'EACCES' }); }
+  finally { fs.renameSync = original; syncBuiltinESMExports(); }
+  assert.equal(readlinkSync(join(f.home, 'current')), beforeCurrent);
+  assert.equal(readlinkSync(join(f.home, 'previous')), beforePrevious);
+  assert.deepEqual(manage('status', f.options).brokenLinks, []);
+  assert.equal(existsSync(join(f.skillsDir, 'pstack-gamma')), false);
+});
 test('same-name files are preserved on initial install and update', t => {
   const f = fixture(t); mkdirSync(f.skillsDir); writeFileSync(join(f.skillsDir, 'pstack-alpha'), 'user work');
   assert.throws(() => manage('install', f.options), /not owned/);
@@ -151,6 +252,18 @@ test('updater ignores unchanged source and avoids duplicate pending PRs', () => 
   assert.equal(updateDecision({ current: 'a', candidate: 'b', pending: {} }), 'pending');
   assert.equal(updateDecision({ current: 'a', candidate: 'b' }), 'propose');
 });
+test('updater detects disabled Issues before attempting Git changes or conflict reporting', t => {
+  const f = fixture(t); const calls = [];
+  const github = (...args) => {
+    calls.push(args);
+    if (args[0] === 'api' && args[1] === 'repos/gyuha-hwang/cursor-plugins') return '{"has_issues":false}';
+    throw new Error(`Unexpected GitHub call: ${args}`);
+  };
+  assert.throws(() => sync(f.repo, { apply: true, github }), /Issues.*enabled/);
+  assert.equal(calls.length, 1);
+  assert.equal(git(f.repo, 'status', '--porcelain'), '');
+  assert.equal(git(f.repo, 'worktree', 'list', '--porcelain').match(/^worktree /gm).length, 1);
+});
 test('updater creates a Draft for an actual changed upstream in isolated Git remotes', t => {
   const f = fixture(t);
   f.write('.gitignore', 'node_modules/\n');
@@ -171,6 +284,7 @@ test('updater creates a Draft for an actual changed upstream in isolated Git rem
   const calls = [];
   const github = (...args) => {
     calls.push(args);
+    if (args[0] === 'api' && args[1] === 'repos/gyuha-hwang/cursor-plugins') return '{"has_issues":true}';
     if (args[0] === 'api') return candidate;
     if (args[0] === 'pr' && args[1] === 'list') return '[]';
     if (args[0] === 'pr' && args[1] === 'create') {
@@ -199,6 +313,7 @@ test('an actual upstream merge conflict is reported without modifying main or cr
   git(f.repo, 'config', `url.${remote}.insteadOf`, 'https://github.com/gyuha-hwang/cursor-plugins.git');
   let reported = false;
   const github = (...args) => {
+    if (args[0] === 'api' && args[1] === 'repos/gyuha-hwang/cursor-plugins') return '{"has_issues":true}';
     if (args[0] === 'api') return candidate;
     if ((args[0] === 'pr' || args[0] === 'issue') && args[1] === 'list') return '[]';
     if (args[0] === 'issue' && args[1] === 'create') {

@@ -38,8 +38,8 @@ function pointer(home, name) {
   if (!stat(path)) return undefined;
   if (!stat(path).isSymbolicLink()) throw new Error(`Unowned pointer, refusing to overwrite: ${path}`);
   const target = readlinkSync(path);
-  if (dirname(target) !== join(home, 'releases')) throw new Error(`Pointer outside managed releases: ${path}`);
-  verifyRelease(target);
+  if (dirname(target) !== join(home, 'releases') || !/^[0-9a-f]{40,64}$/.test(basename(target))) throw new Error(`Pointer outside managed releases: ${path}`);
+  if (stat(join(home, 'releases'))?.isSymbolicLink() || (stat(target) && realpathSync(target) !== target)) throw new Error(`Pointer outside managed releases: ${path}`);
   return target;
 }
 function swap(home, name, target) {
@@ -51,6 +51,12 @@ function swap(home, name, target) {
 function ownedLinks(home, skillsDir) {
   if (!existsSync(skillsDir)) return [];
   return readdirSync(skillsDir).filter(name => /^pstack-[a-z0-9-]+$/.test(name) && isLinkTo(join(skillsDir, name), join(home, 'current', bundle, 'skills', name)));
+}
+function restorePointer(home, name, target) {
+  const current = pointer(home, name);
+  if (current === target) return;
+  if (target) swap(home, name, target);
+  else if (current) unlinkSync(join(home, name));
 }
 function activate(home, skillsDir, target) {
   const next = verifyRelease(target);
@@ -64,25 +70,44 @@ function activate(home, skillsDir, target) {
   }
   const oldNames = ownedLinks(home, skillsDir);
   const added = [];
+  const removed = [];
+  let nextPrevious = previous;
+  if (current && current !== target) {
+    try { verifyRelease(current); nextPrevious = current; } catch { /* Keep the existing rollback release when current content is damaged. */ }
+  }
   mkdirSync(skillsDir, { recursive: true });
   try {
     for (const name of names) {
       const path = join(skillsDir, name);
       if (!stat(path)) { symlinkSync(join(home, 'current', bundle, 'skills', name), path); added.push(path); }
     }
+    for (const name of oldNames.filter(n => !names.includes(n))) {
+      const path = join(skillsDir, name);
+      unlinkSync(path); removed.push(path);
+    }
     if (current !== target) {
-      if (current) swap(home, 'previous', current);
+      restorePointer(home, 'previous', nextPrevious);
       swap(home, 'current', target);
     }
   } catch (error) {
-    for (const path of added) unlinkSync(path);
-    if (current && pointer(home, 'current') === current) {
-      if (previous) swap(home, 'previous', previous);
-      else if (stat(join(home, 'previous'))) unlinkSync(join(home, 'previous'));
+    const failures = [];
+    const recover = action => { try { action(); } catch (failure) { failures.push(failure); } };
+    recover(() => restorePointer(home, 'current', current));
+    recover(() => restorePointer(home, 'previous', previous));
+    for (const path of added.reverse()) recover(() => {
+      if (isLinkTo(path, join(home, 'current', bundle, 'skills', basename(path)))) unlinkSync(path);
+      else if (stat(path)) throw new Error(`Cannot remove a replaced skill during rollback: ${path}`);
+    });
+    for (const path of removed) recover(() => {
+      const expected = join(home, 'current', bundle, 'skills', basename(path));
+      if (!stat(path)) symlinkSync(expected, path);
+      else if (!isLinkTo(path, expected)) throw new Error(`Cannot restore a replaced skill during rollback: ${path}`);
+    });
+    if (failures.length) {
+      throw new AggregateError([error, ...failures], `Activation failed and rollback was incomplete: ${failures.map(failure => failure.message).join('; ')}`);
     }
     throw error;
   }
-  for (const name of oldNames.filter(n => !names.includes(n))) unlinkSync(join(skillsDir, name));
   return next;
 }
 
@@ -91,9 +116,13 @@ export function manage(command, { ref, source = repo, home = join(process.env.CO
   if (command === 'status') {
     const current = pointer(home, 'current');
     if (!current) return { installed: false };
-    const manifest = verifyRelease(current);
-    const brokenLinks = manifest.skills.filter(({ name }) => !isLinkTo(join(skillsDir, name), join(home, 'current', bundle, 'skills', name))).map(s => s.name);
-    return { installed: true, release: current, ...json(join(current, 'install.json')), adapterVersion: manifest.adapterVersion, upstream: manifest.source, activation: manifest.activation, model: manifest.model, counts: Object.fromEntries(['supported', 'conditional', 'unsupported'].map(status => [status, manifest.skills.filter(s => s.status === status).length])), brokenLinks };
+    try {
+      const manifest = verifyRelease(current);
+      const brokenLinks = manifest.skills.filter(({ name }) => !isLinkTo(join(skillsDir, name), join(home, 'current', bundle, 'skills', name))).map(s => s.name);
+      return { installed: true, healthy: true, release: current, ...json(join(current, 'install.json')), adapterVersion: manifest.adapterVersion, upstream: manifest.source, activation: manifest.activation, model: manifest.model, counts: Object.fromEntries(['supported', 'conditional', 'unsupported'].map(status => [status, manifest.skills.filter(s => s.status === status).length])), brokenLinks };
+    } catch (error) {
+      return { installed: true, healthy: false, release: current, commit: basename(current), integrityError: error.message };
+    }
   }
   if (!['install', 'update', 'rollback', 'uninstall'].includes(command)) throw new Error('Use install|update --ref <tag-or-commit>, status, rollback, or uninstall');
   mkdirSync(home, { recursive: true });
